@@ -343,6 +343,9 @@ EXT_FEATURE_FLAGS =
 
 EXT_FEATURE_FLAGS = $(EXT_FEATURE_FLAGS) -DSQLITE_HAS_CODEC -DSQLITE_TEMP_STORE=2
 
+OPENSSLINCLUDE = d:\openssl\include
+LDOPTS = $(LDOPTS) /libpath:d:\openssl\lib libcrypto.lib
+
 ###############################################################################
 ############################### END OF OPTIONS ################################
 ###############################################################################
@@ -517,7 +520,7 @@ TCC = $(CC) -nologo -W3 $(CCOPTS) $(TCCOPTS)
 TCC = $(TCC) -WX
 !ENDIF
 
-TCC = $(TCC) -DSQLITE_OS_WIN=1 -I. -I$(TOP) -I$(TOP)\src -fp:precise
+TCC = $(TCC) -DSQLITE_OS_WIN=1 -I. -I$(OPENSSLINCLUDE) -I$(TOP) -I$(TOP)\src -fp:precise
 RCC = $(RC) -DSQLITE_OS_WIN=1 -I. -I$(TOP) -I$(TOP)\src $(RCOPTS) $(RCCOPTS)
 
 # Check if we want to use the "stdcall" calling convention when compiling.
